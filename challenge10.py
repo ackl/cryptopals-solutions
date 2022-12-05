@@ -5,9 +5,9 @@ from challenge7 import aes_ecb_decrypt
 from challenge6 import chunk
 from challenge2 import byte_xor
 
-def aes_ecb_encrypt(ciphertext, key):
+def aes_ecb_encrypt(plaintext, key):
     cipher = AES.new(key, AES.MODE_ECB)
-    return cipher.encrypt(ciphertext)
+    return cipher.encrypt(pkcs_pad(plaintext, 16))
 
 def aes_cbc_encrypt(plaintext, key, iv):
     # pad plaintext so its length is multiple of 16 bytes 
@@ -46,10 +46,8 @@ if __name__ == '__main__':
     key = b'YELLOW SUBMARINE'
 
     a = aes_cbc_encrypt(s, key, bytes(16))
-    print(a)
 
     b = aes_cbc_decrypt(a, key, bytes(16))
-    print(b)
 
     with open('./data/c10.txt') as file:
         s = base64.b64decode(file.read())
