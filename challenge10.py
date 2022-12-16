@@ -7,7 +7,7 @@ from challenge2 import byte_xor
 
 def aes_ecb_encrypt(plaintext, key):
     cipher = AES.new(key, AES.MODE_ECB)
-    return cipher.encrypt(pkcs_pad(plaintext, 16))
+    return cipher.encrypt(plaintext)
 
 def aes_cbc_encrypt(plaintext, key, iv):
     # pad plaintext so its length is multiple of 16 bytes 
